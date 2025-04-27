@@ -54,12 +54,15 @@ Dengan penyetelan yang tepat, PID mampu menghasilkan respon sistem yang cepat, s
 
 ## Library yang Digunakan
 
-- **PID_v1**  
-  Library resmi Arduino untuk implementasi PID control.
 - **Keypad**  
   Library untuk membaca input dari keypad matrix.
 - **LiquidCrystal_I2C**  
   Library untuk mengontrol LCD melalui I2C.
+- **EEPROM**  
+  Library untuk membaca dan menulis data ke memori EEPROM internal Arduino.
+- **Wire**  
+  Library untuk komunikasi I2C (Inter-Integrated Circuit) antar perangkat.
+
 
 **Instalasi Library:**  
 Bisa dilakukan melalui Arduino IDE → Library Manager (`Sketch > Include Library > Manage Libraries`).
@@ -70,7 +73,7 @@ Bisa dilakukan melalui Arduino IDE → Library Manager (`Sketch > Include Librar
 
 Skema rangkaian proyek ini dapat dilihat pada file berikut:
 
-- [Wiring Diagram (PDF)](diagram/Wiring_Diagram.pdf)
+- [Wiring Diagram (PDF)]([diagram/Wiring_Diagram.pdf](https://github.com/abyanlastiyan/Arduino-PID-Controller-Keypad-LCD))
 
 ---
 
