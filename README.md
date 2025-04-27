@@ -1,107 +1,99 @@
-Motor PID Controller with Keypad and LCD Display
-Deskripsi Proyek
-Proyek ini merupakan sistem kontrol kecepatan motor berbasis algoritma PID (Proportional-Integral-Derivative) menggunakan Arduino Uno. Sistem ini memungkinkan pengaturan nilai PID secara real-time melalui input dari Keypad 4x4, serta menampilkan informasi parameter PID dan kecepatan motor (RPM) pada LCD 16x2 berbasis I2C.
+# Motor PID Controller with Keypad and LCD Display
+> Sistem Kontrol Kecepatan Motor Menggunakan Algoritma PID
+
+---
+
+## Deskripsi Proyek
+
+Proyek ini merupakan sistem kontrol kecepatan motor berbasis algoritma PID (Proportional-Integral-Derivative) menggunakan Arduino Uno.  
+Sistem ini memungkinkan pengaturan nilai PID secara real-time melalui input dari Keypad 4x4, serta menampilkan informasi parameter PID dan kecepatan motor (RPM) pada LCD 16x2 berbasis I2C.
 
 Sistem dirancang untuk mempertahankan kecepatan motor secara stabil terhadap perubahan beban atau gangguan, sehingga meningkatkan performa dan efisiensi kontrol motor.
 
-Apa itu PID Controller?
-PID Controller adalah algoritma pengendalian berbasis umpan balik (feedback control) yang banyak digunakan untuk menjaga variabel proses (seperti kecepatan, suhu, tekanan) agar tetap pada nilai target (setpoint).
+---
+
+## Apa itu PID Controller?
+
+PID Controller adalah algoritma pengendalian berbasis umpan balik (feedback control) yang banyak digunakan untuk menjaga variabel proses seperti kecepatan, suhu, atau tekanan agar tetap pada nilai target (setpoint).
+
 PID bekerja dengan kombinasi tiga komponen utama:
-
-Proportional (P): Mengoreksi error berdasarkan nilai error saat ini.
-
-Integral (I): Mengoreksi error berdasarkan akumulasi error masa lalu.
-
-Derivative (D): Mengoreksi error berdasarkan prediksi tren perubahan error.
+- **Proportional (P)**: Mengoreksi error berdasarkan nilai error saat ini.
+- **Integral (I)**: Mengoreksi error berdasarkan akumulasi error masa lalu.
+- **Derivative (D)**: Mengoreksi error berdasarkan prediksi tren perubahan error.
 
 Dengan penyetelan yang tepat, PID mampu menghasilkan respon sistem yang cepat, stabil, dan minim osilasi.
 
-Alat dan Bahan
-Arduino Uno R3
+---
 
-Motor DC + Encoder atau Simulasi Motor
+## Tabel Input dan Output
 
-Driver Motor (contoh: L298N)
+| Komponen          | Pin Arduino | Keterangan                                  |
+|-------------------|-------------|---------------------------------------------|
+| Motor Driver (ENA) | Pin 9       | PWM untuk kecepatan motor                   |
+| Motor Driver (IN1) | Pin 7       | Arah motor 1                                |
+| Motor Driver (IN2) | Pin 8       | Arah motor 2                                |
+| Encoder Motor     | Pin 2        | Interrupt untuk pembacaan RPM motor         |
+| LCD I2C           | SDA: A4, SCL: A5 | Menampilkan PID dan RPM                   |
+| Keypad 4x4        | Pin 3, 4, 5, 6, 10, 11, 12, 13 | Input nilai PID dan kontrol |
 
-LCD 16x2 dengan modul I2C (alamat I2C: 0x27)
+---
 
-Keypad 4x4
+## Alat dan Bahan
 
-Sensor kecepatan motor (optional, bisa menggunakan encoder atau sensor Hall Effect)
+- Arduino Uno R3
+- Motor DC + Encoder atau simulasi motor
+- Driver Motor (contoh: L298N)
+- LCD 16x2 dengan modul I2C (alamat I2C: 0x27)
+- Keypad 4x4
+- Sensor kecepatan motor (opsional, bisa menggunakan encoder atau sensor Hall Effect)
+- Kabel jumper
+- Breadboard
+- Power supply motor (contoh: 12V adaptor)
 
-Breadboard dan Kabel Jumper
+---
 
-Power Supply sesuai spesifikasi motor
+## Library yang Digunakan
 
-Library yang Digunakan
-Pastikan library berikut sudah terinstall pada Arduino IDE:
+- **PID_v1**  
+  Library resmi Arduino untuk implementasi PID control.
+- **Keypad**  
+  Library untuk membaca input dari keypad matrix.
+- **LiquidCrystal_I2C**  
+  Library untuk mengontrol LCD melalui I2C.
 
-PID_v1.h — Library untuk kontrol PID.
+**Instalasi Library:**  
+Bisa dilakukan melalui Arduino IDE → Library Manager (`Sketch > Include Library > Manage Libraries`).
 
-LiquidCrystal_I2C.h — Library untuk mengontrol LCD via I2C.
+---
 
-Keypad.h — Library untuk membaca input dari Keypad.
+## Skema Rangkaian
 
-Tabel Input - Output Keypad
+Skema rangkaian proyek ini dapat dilihat pada file berikut:
 
-Tombol Keypad	Fungsi
-1	Menambah nilai Kp (+)
-2	Menambah nilai Ki (+)
-3	Menambah nilai Kd (+)
-4	Mengurangi nilai Kp (-)
-5	Mengurangi nilai Ki (-)
-6	Mengurangi nilai Kd (-)
-7	Menambah target RPM (+)
-8	Mengurangi target RPM (-)
-9	Reset nilai PID dan target RPM ke default
-0	Tidak digunakan
-*	Simpan pengaturan ke EEPROM (opsional)
-#	Beralih Mode Manual/Auto (opsional)
-Cara Kerja Sistem
-Nilai Kp, Ki, dan Kd dapat diubah secara dinamis melalui Keypad.
+- [Wiring Diagram (PDF)](diagram/Wiring_Diagram.pdf)
 
-Target RPM juga dapat diatur menggunakan Keypad.
+---
 
-LCD akan menampilkan nilai parameter PID dan kecepatan motor aktual (RPM).
+## File Program
 
-Arduino membaca error antara target RPM dan aktual RPM, lalu menghitung koreksi sinyal PWM menggunakan algoritma PID.
+Source code lengkap Arduino tersedia di:
 
-Output PWM digunakan untuk mengatur kecepatan motor melalui driver motor.
+- [Motor_PID_Controller.ino](code/Motor_PID_Controller.ino)
 
-User dapat mereset nilai PID atau menyimpan pengaturan ke EEPROM sesuai kebutuhan.
+---
 
-Wiring Diagram
-Wiring diagram lengkap tersedia di folder proyek dalam format Fritzing (.fzz) dan gambar (.png).
+## Cara Kerja Singkat
 
-Keterangan utama koneksi:
+1. Sistem membaca input nilai P, I, dan D dari keypad 4x4.
+2. Nilai PID diupdate secara real-time tanpa perlu upload ulang program.
+3. Sistem membaca kecepatan motor dari sensor encoder.
+4. Output PID digunakan untuk mengatur PWM motor melalui driver motor.
+5. Semua nilai PID dan kecepatan motor (RPM) ditampilkan pada LCD 16x2 I2C.
 
-SDA LCD → A4 Arduino
+---
 
-SCL LCD → A5 Arduino
+## Lisensi
 
-Keypad dihubungkan ke pin digital 2-9 Arduino (atau sesuai skema)
+Proyek ini dilisensikan di bawah [MIT License](LICENSE).
 
-Motor Driver → PWM control dari Arduino
-
-Encoder/Sensor → Input interrupt Arduino (optional)
-
-Fitur Tambahan (Opsional)
-Penyimpanan nilai PID ke EEPROM untuk persistensi pengaturan saat reset/power off.
-
-Mode Manual/Auto Switch.
-
-Validasi input keypad untuk menghindari kesalahan setting.
-
-Proteksi motor terhadap overcurrent/overspeed.
-
-TODO / Rencana Pengembangan
-Menambahkan auto-tuning PID.
-
-Implementasi pengaturan batas maksimal dan minimal PWM output.
-
-Menampilkan status sistem (Normal / Error) di LCD.
-
-Optimasi penggunaan memori Arduino untuk proyek lebih besar.
-
-Lisensi
-Proyek ini bersifat open-source dan dapat digunakan untuk keperluan edukasi, penelitian, atau pengembangan lebih lanjut dengan mencantumkan sumber.
+---
