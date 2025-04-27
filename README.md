@@ -29,9 +29,9 @@ Dengan penyetelan yang tepat, PID mampu menghasilkan respon sistem yang cepat, s
 
 | Komponen          | Pin Arduino | Keterangan                                  |
 |-------------------|-------------|---------------------------------------------|
-| Motor Driver (ENA) | Pin 9       | PWM untuk kecepatan motor                   |
-| Motor Driver (IN1) | Pin 7       | Arah motor 1                                |
-| Motor Driver (IN2) | Pin 8       | Arah motor 2                                |
+| Motor Driver (ENB) | Pin 9       | PWM untuk kecepatan motor                   |
+| Motor Driver (IN3) | Pin 7       | Arah motor 1                                |
+| Motor Driver (IN4) | Pin 8       | Arah motor 2                                |
 | Encoder Motor     | Pin 2        | Interrupt untuk pembacaan RPM motor         |
 | LCD I2C           | SDA: A4, SCL: A5 | Menampilkan PID dan RPM                   |
 | Keypad 4x4        | Pin 3, 4, 5, 6, 10, 11, 12, 13 | Input nilai PID dan kontrol |
@@ -73,7 +73,7 @@ Bisa dilakukan melalui Arduino IDE → Library Manager (`Sketch > Include Librar
 
 Skema rangkaian proyek ini dapat dilihat pada file berikut:
 
-- [Wiring Diagram (PDF)]([diagram/Wiring_Diagram.pdf](https://github.com/abyanlastiyan/Arduino-PID-Controller-Keypad-LCD))
+- [Wiring Diagram (PDF)]([diagram/Wiring_Diagram.pdf](./Permodelan_SkemaPID.pdf)
 
 ---
 
@@ -81,7 +81,7 @@ Skema rangkaian proyek ini dapat dilihat pada file berikut:
 
 Source code lengkap Arduino tersedia di:
 
-- [Motor_PID_Controller.ino](code/Motor_PID_Controller.ino)
+- [Motor_PID_Controller.ino](./PID.ino)
 
 ---
 
@@ -97,6 +97,6 @@ Source code lengkap Arduino tersedia di:
 
 ## Lisensi
 
-Proyek ini dilisensikan di bawah [MIT License](LICENSE).
+Proyek ini dilisensikan di bawah [MIT License](https://opensource.org/licenses/MIT).
 
 ---
