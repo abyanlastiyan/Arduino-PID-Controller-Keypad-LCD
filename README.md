@@ -73,7 +73,7 @@ Bisa dilakukan melalui Arduino IDE → Library Manager (`Sketch > Include Librar
 
 Skema rangkaian proyek ini dapat dilihat pada file berikut:
 
-- [Wiring Diagram (PDF)](./Permodelan_Skema%20PID.pdf)
+- [Wiring Diagram (PDF)](./skema_pid.pdf)
 
 ---
 
@@ -81,7 +81,7 @@ Skema rangkaian proyek ini dapat dilihat pada file berikut:
 
 Source code lengkap Arduino tersedia di:
 
-- [Motor_PID_Controller.ino](./PID.ino)
+- [Motor_PID_Controller.ino](./pid_controller.ino)
 
 ---
 
