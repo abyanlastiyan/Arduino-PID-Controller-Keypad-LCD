@@ -73,7 +73,7 @@ Bisa dilakukan melalui Arduino IDE → Library Manager (`Sketch > Include Librar
 
 Skema rangkaian proyek ini dapat dilihat pada file berikut:
 
-- [Wiring Diagram (PDF)]([diagram/Wiring_Diagram.pdf](./Permodelan_SkemaPID.pdf)
+- [Wiring Diagram (PDF)](./Permodelan_Skema%20PID.pdf)
 
 ---
 
